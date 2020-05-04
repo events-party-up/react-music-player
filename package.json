@@ -1,94 +1,129 @@
 {
-  "name": "react-music-player",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "autoprefixer": "7.1.6",
-    "babel-core": "6.26.0",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-loader": "7.1.2",
-    "babel-preset-react-app": "^3.1.0",
-    "babel-runtime": "6.26.0",
-    "case-sensitive-paths-webpack-plugin": "2.1.1",
-    "chalk": "1.1.3",
-    "css-loader": "0.28.7",
-    "dotenv": "4.0.0",
-    "eslint": "4.10.0",
-    "eslint-config-react-app": "^2.0.1",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0",
-    "extract-text-webpack-plugin": "3.0.2",
-    "file-loader": "1.1.5",
-    "fs-extra": "3.0.1",
-    "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
-    "object-assign": "4.1.1",
-    "postcss-flexbugs-fixes": "3.2.0",
-    "postcss-loader": "2.0.8",
-    "promise": "8.0.1",
-    "raf": "3.4.0",
-    "react": "^16.2.0",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-dev-utils": "^4.2.1",
-    "react-dom": "^16.2.0",
-    "style-loader": "0.19.0",
-    "sw-precache-webpack-plugin": "0.11.4",
-    "url-loader": "0.6.2",
-    "webpack": "3.8.1",
-    "webpack-dev-server": "2.9.4",
-    "webpack-manifest-plugin": "1.3.2",
-    "whatwg-fetch": "2.0.3"
-  },
+  "name": "react-cool-music-player",
+  "version": "1.0.6",
+  "description": "A music player component build with react and typescript for mobile and PC",
+  "sideEffects": [
+    "*.css",
+    "*.less"
+  ],
+  "main": "./dist/index.js",
+  "typing": "index.d.ts",
+  "files": [
+    "dist/",
+    "LICENCE",
+    "package.json",
+    "index.d.ts"
+  ],
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "jest --watch",
+    "coverage": "jest --coverage",
+    "clear:dist": "rimraf dist",
+    "clear:public": "rimraf cool-player",
+    "lint:ts": "eslint ./src --ext .js,.ts,.tsx",
+    "lint:ts-fix": "eslint ./src --ext .js,.ts,.tsx --fix",
+    "lint:style": "stylelint **/*.less --syntax less",
+    "lint:style-fix": "stylelint **/*.less --syntax less --fix",
+    "lint": "npm run lint:ts && npm run lint:style",
+    "lint-fix": "npm run lint:ts-fix && npm run lint:style-fix",
+    "dev": "webpack-dev-server --progress --config configs/webpack.dev.js",
+    "build": "npm run clear:dist && webpack --progress --config configs/webpack.prod.js",
+    "build:demo": "npm run clear:public && webpack --progress --config configs/webpack.demo.js",
+    "build:server": "webpack --progress --config configs/webpack.server.js",
+    "start": "npm run build:demo && npm run build:server && node ./cool-player/server.js"
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
+  "author": "axizs <anxizcs@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neroneroffy/react-music-player"
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
+  "homepage": "https://github.com/neroneroffy/react-music-player",
+  "bugs": {
+    "url": "https://github.com/neroneroffy/react-music-player/issues"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "keywords": [
+    "react",
+    "reactjs",
+    "player",
+    "music",
+    "audio",
+    "react-player",
+    "react-cool-music-player",
+    "react-music-player",
+    "react-audio-player",
+    "cd-player",
+    "music-player",
+    "audio-player",
+    "component"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/react": "^16.9.16",
+    "@types/react-addons-css-transition-group": "^15.0.5",
+    "@types/react-dom": "^16.9.4",
+    "classnames": "^2.2.6",
+    "react": "^16.12.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-dom": "^16.12.0"
   },
-  "homepage": "."
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@testing-library/jest-dom": "^5.0.2",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "autoprefixer": "^9.7.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "express": "^4.17.1",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.3",
+    "jest": "^24.9.0",
+    "jest-environment-jsdom-fourteen": "0.1.0",
+    "jest-enzyme": "^7.1.2",
+    "jest-react": "^0.10.0",
+    "jest-resolve": "^25.1.0",
+    "jest-watch-typeahead": "^0.4.2",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "react-app-polyfill": "^1.0.5",
+    "rimraf": "^3.0.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^1.0.1",
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0",
+    "terser-webpack-plugin": "^2.3.5",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "react-addons-css-transition-group": ">=15.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
 }

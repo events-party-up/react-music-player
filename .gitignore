@@ -3,12 +3,17 @@
 # dependencies
 /node_modules
 .idea
+.vscode
 
 # testing
 /coverage
 
 # production
 /build
+/dist
+/public
+/cool-player
+cool-player.zip
 
 # misc
 .DS_Store
